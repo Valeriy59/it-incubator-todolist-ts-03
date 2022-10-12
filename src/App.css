@@ -6,3 +6,32 @@
 .App > div {
   margin-right: 50px;
 }
+
+.isDone {
+  text-decoration: line-through;
+  font-weight: bold;
+  color: limegreen;
+}
+.notIsDone {
+  font-weight: bold;
+  color: hotpink;
+}
+.btn {
+  background-color: darkcyan;
+  padding: 3px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 3px;
+  border: none;
+  margin-right: 3px;
+}
+.active-btn {
+  background-color: maroon;
+  color: white;
+}
+
+.error {
+  border: 2px solid hotpink;
+  outline: none;
+}
