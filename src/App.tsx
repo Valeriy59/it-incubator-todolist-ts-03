@@ -7,7 +7,7 @@ import {AppBar, Button, Container, Grid, IconButton, Paper, Toolbar, Typography}
 import {Menu} from "@material-ui/icons";
 
 export type FilterValuesType = "all" | "active" | "completed";
-type TodolistsType = {
+export type TodolistsType = {
     id: string,
     title: string,
     filter: FilterValuesType
@@ -40,6 +40,7 @@ function App() {
         ]
     });
 
+    // tasks
     function removeTask(todoListId: string, taskId: string) {
         setTasks({...tasks, [todoListId]: tasks[todoListId].filter(el => el.id !== taskId)})
         // let filteredTasks = tasks.filter(t => t.id != id);
@@ -58,15 +59,13 @@ function App() {
             ...tasks,
             [todoListId]: tasks[todoListId].map(el => el.id === taskId ? {...el, isDone: isDoneValue} : el)
         })
-        // let task = tasks.find(t => t.id === taskId);
-        // if (task) {
-        //     task.isDone = isDone;
-        // }
-        //
-        // setTasks([...tasks]);
+    }
+    const changeTaskTitle = (todoListId: string, taskId: string, title: string) => {
+        setTasks({...tasks, [todoListId]: tasks[todoListId].map(el => el.id === taskId ? {...el, title: title} : el)})
     }
 
-    function changeFilter(todoListId: string, value: FilterValuesType) {
+    // todolists
+    const changeFilter = (todoListId: string, value: FilterValuesType) => {
         setTodolists(todolists.map(el => el.id === todoListId ? {...el, filter: value} : el))
         // setFilter(value);
     }
@@ -93,9 +92,7 @@ function App() {
         setTasks({...tasks, [newTodolistId]: []})
     }
 
-    const changeTaskTitle = (todoListId: string, taskId: string, title: string) => {
-        setTasks({...tasks, [todoListId]: tasks[todoListId].map(el => el.id === taskId ? {...el, title: title} : el)})
-    }
+
 
     return (
         <div className="App">
@@ -125,7 +122,7 @@ function App() {
                         tasksForTodolist = tasks[el.id].filter(t => t.isDone === true);
                     }
                     return (
-                        <Grid item xl={5} spacing={5} >
+                        <Grid item xs={4} spacing={2} >
                         <Paper
                             // variant={"outlined"}
                             elevation={8}
